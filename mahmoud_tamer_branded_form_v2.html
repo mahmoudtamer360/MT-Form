@@ -1,0 +1,485 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--bg-card:#0F0F0F;--bg-input:#141414;
+  --border:#1E1E1E;--border-hover:#2E2E2E;
+  --text:#EDE9E3;--text-muted:#555;--text-sub:#888;
+  --gold:#B8863A;--gold-hi:#D4A55A;--gold-dim:rgba(184,134,58,.1);--gold-border:rgba(184,134,58,.25);
+}
+body{background:var(--bg);color:var(--text)}
+.f-editorial{font-family:'Cormorant',serif}
+.f-body{font-family:'DM Sans',sans-serif}
+.wrap{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem;font-family:'DM Sans',sans-serif}
+
+/* ── BRAND HEADER ── */
+.brand-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;padding-bottom:1.75rem;border-bottom:0.5px solid var(--border)}
+.logo-lockup{display:flex;align-items:center;gap:14px}
+
+/* Abstract geometric mark */
+.logo-mark{width:44px;height:44px;flex-shrink:0;position:relative}
+.logo-mark svg{display:block}
+
+.logo-text{display:flex;flex-direction:column;gap:3px}
+.logo-name{font-family:'Cormorant',serif;font-size:19px;font-weight:500;color:#EDE9E3;letter-spacing:.04em;line-height:1}
+.logo-tagline{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+.header-badge{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text-muted);letter-spacing:.08em;border:0.5px solid var(--border);padding:5px 13px;border-radius:4px}
+
+/* ── DOC INTRO ── */
+.doc-eyebrow{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.doc-title{font-family:'Cormorant',serif;font-size:34px;font-weight:500;color:#EDE9E3;line-height:1.1;margin-bottom:8px}
+.doc-sub{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:2rem;max-width:500px}
+
+/* ── PROGRESS ── */
+.progress-wrap{display:flex;align-items:center;gap:8px;margin-bottom:2rem}
+.step-dot{height:1.5px;flex:1;background:var(--border);transition:background .35s}
+.step-dot.done{background:var(--gold)}
+.step-dot.active{background:rgba(184,134,58,.4)}
+.prog-label{font-size:10px;color:var(--text-muted);white-space:nowrap;letter-spacing:.08em;font-family:'DM Sans',sans-serif}
+
+/* ── CARD ── */
+.card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;overflow:hidden}
+.card-head{padding:18px 22px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:14px}
+.card-num{font-family:'Cormorant',serif;font-size:13px;font-weight:500;color:var(--gold);letter-spacing:.1em;min-width:24px}
+.card-title{font-family:'Cormorant',serif;font-size:18px;font-weight:500;color:#EDE9E3;letter-spacing:.01em}
+.card-desc{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-muted);margin-top:2px;letter-spacing:.02em}
+.card-body{padding:22px;display:flex;flex-direction:column;gap:18px}
+
+/* ── FIELDS ── */
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-sub)}
+.field input,.field textarea,.field select{
+  width:100%;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);
+  background:var(--bg-input);border:0.5px solid var(--border);
+  border-radius:6px;padding:10px 13px;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-muted)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold-border);box-shadow:0 0 0 3px var(--gold-dim)}
+.field textarea{resize:vertical;min-height:80px;line-height:1.6}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* ── CHIPS ── */
+.chip-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.chip{padding:6px 13px;border-radius:4px;border:0.5px solid var(--border);font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-sub);cursor:pointer;transition:all .15s;user-select:none;background:var(--bg-input);letter-spacing:.01em}
+.chip:hover{border-color:var(--border-hover);color:var(--text)}
+.chip.on{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold-hi)}
+
+/* ── NAV ── */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.btn{padding:9px 22px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.btn-ghost{background:transparent;border:0.5px solid var(--border);color:var(--text-muted)}
+.btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+.btn-gold{background:var(--gold);color:#080808;border:none;font-weight:500;letter-spacing:.06em}
+.btn-gold:hover{background:var(--gold-hi);transform:translateY(-1px)}
+.btn-gen{width:100%;padding:13px;font-size:13px;font-weight:500;letter-spacing:.06em;border-radius:6px;background:var(--gold);color:#080808;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;margin-top:6px}
+.btn-gen:hover{background:var(--gold-hi);transform:translateY(-1px)}
+.step-ctr{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-muted)}
+
+/* ── SUMMARY ── */
+.sum-wrap{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;overflow:hidden}
+.sum-head{padding:20px 22px;border-bottom:0.5px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.sum-head-title{font-family:'Cormorant',serif;font-size:22px;font-weight:500;color:#EDE9E3}
+.sum-head-meta{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-muted);margin-top:4px}
+.sum-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:0.5px solid var(--gold-border);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:4px;white-space:nowrap;margin-top:4px}
+.sum-section{padding:18px 22px;border-bottom:0.5px solid var(--border)}
+.sum-section:last-child{border-bottom:none}
+.sum-section-label{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.sum-row{display:flex;gap:14px;margin-bottom:8px;font-size:12px;line-height:1.55}
+.sum-row:last-child{margin-bottom:0}
+.sum-k{font-family:'DM Sans',sans-serif;color:var(--text-muted);min-width:140px;flex-shrink:0}
+.sum-v{font-family:'DM Sans',sans-serif;color:var(--text);word-break:break-word}
+.copy-row{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.copy-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:5px;border:0.5px solid var(--border);background:transparent;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.copy-btn:hover{border-color:var(--border-hover);color:var(--text)}
+.done-pill{display:none;align-items:center;gap:5px;background:rgba(45,106,63,.15);color:#5bce7a;font-family:'DM Sans',sans-serif;font-size:11px;padding:7px 13px;border-radius:5px;border:0.5px solid rgba(91,206,122,.2)}
+
+/* ── FOOTER ── */
+.footer{margin-top:2.5rem;padding-top:1.5rem;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-logo-name{font-family:'Cormorant',serif;font-size:14px;font-weight:500;color:var(--text-sub);letter-spacing:.04em}
+.footer-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+.footer-tagline{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text-muted);letter-spacing:.08em}
+.footer-year{font-family:'DM Sans',sans-serif;font-size:10px;color:var(--text-muted)}
+</style>
+
+<div class="wrap">
+
+  <!-- BRAND HEADER -->
+  <div class="brand-header">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="44" rx="3" fill="#0F0F0F"/>
+          <!-- Abstract mark: two overlapping offset squares rotated, minimal -->
+          <rect x="10" y="10" width="14" height="14" rx="1" stroke="#B8863A" stroke-width="1" fill="none" opacity=".9"/>
+          <rect x="20" y="20" width="14" height="14" rx="1" stroke="#B8863A" stroke-width="1" fill="none" opacity=".5"/>
+          <!-- intersection accent -->
+          <rect x="20" y="20" width="4" height="4" fill="#B8863A" opacity=".35"/>
+          <!-- top-right dot -->
+          <circle cx="34" cy="10" r="1.5" fill="#B8863A" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Mahmoud Tamer</span>
+        <span class="logo-tagline">Digital Marketing & Branding</span>
+      </div>
+    </div>
+    <span class="header-badge">Discovery · v1</span>
+  </div>
+
+  <!-- DOC INTRO -->
+  <div class="doc-eyebrow">Client discovery</div>
+  <h1 class="doc-title">Website brief form</h1>
+  <p class="doc-sub">Fill this during the call — around 10 minutes. Generate a clean summary at the end to share with the client for confirmation.</p>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="step-dot active" id="d0"></div>
+    <div class="step-dot" id="d1"></div>
+    <div class="step-dot" id="d2"></div>
+    <div class="step-dot" id="d3"></div>
+    <div class="step-dot" id="d4"></div>
+    <span class="prog-label" id="prog-label">01 — 05</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="s0">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">01</span>
+        <div><div class="card-title">Business identity</div><div class="card-desc">Who they are and how to reach them</div></div>
+      </div>
+      <div class="card-body">
+        <div class="field-row">
+          <div class="field"><label>Agency name</label><input type="text" id="f-name" placeholder="e.g. Desert Trails Egypt"></div>
+          <div class="field"><label>Years in business</label><input type="number" id="f-years" placeholder="e.g. 8"></div>
+        </div>
+        <div class="field"><label>Owner / contact name</label><input type="text" id="f-owner" placeholder="Full name"></div>
+        <div class="field-row">
+          <div class="field"><label>Phone / WhatsApp</label><input type="tel" id="f-phone" placeholder="+20 100 ..."></div>
+          <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="hello@agency.com"></div>
+        </div>
+        <div class="field"><label>Office location(s)</label><input type="text" id="f-location" placeholder="e.g. Cairo — also serves Luxor & Aswan"></div>
+        <div class="field"><label>Licenses or certifications</label><input type="text" id="f-certs" placeholder="e.g. Egyptian Tourism Authority, IATA certified"></div>
+        <div class="field"><label>What makes them different?</label><textarea id="f-about" placeholder="In their own words..."></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="s1" style="display:none">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">02</span>
+        <div><div class="card-title">Services & operations</div><div class="card-desc">What they offer and how they work</div></div>
+      </div>
+      <div class="card-body">
+        <div class="field"><label>Services offered</label>
+          <div class="chip-group" id="cg-services">
+            <div class="chip" data-v="Day tours">Day tours</div>
+            <div class="chip" data-v="Multi-day packages">Multi-day packages</div>
+            <div class="chip" data-v="Nile cruises">Nile cruises</div>
+            <div class="chip" data-v="Desert safaris">Desert safaris</div>
+            <div class="chip" data-v="Diving & snorkeling">Diving & snorkeling</div>
+            <div class="chip" data-v="Private guides">Private guides</div>
+            <div class="chip" data-v="Airport transfers">Airport transfers</div>
+            <div class="chip" data-v="Hotel bookings">Hotel bookings</div>
+            <div class="chip" data-v="Honeymoon trips">Honeymoon trips</div>
+            <div class="chip" data-v="Group tours">Group tours</div>
+          </div>
+        </div>
+        <div class="field"><label>Destinations covered</label>
+          <div class="chip-group" id="cg-areas">
+            <div class="chip" data-v="Cairo & Giza">Cairo & Giza</div>
+            <div class="chip" data-v="Luxor">Luxor</div>
+            <div class="chip" data-v="Aswan">Aswan</div>
+            <div class="chip" data-v="Red Sea">Red Sea</div>
+            <div class="chip" data-v="Sinai">Sinai</div>
+            <div class="chip" data-v="Alexandria">Alexandria</div>
+            <div class="chip" data-v="Western Desert">Western Desert</div>
+            <div class="chip" data-v="Abu Simbel">Abu Simbel</div>
+            <div class="chip" data-v="Petra (Jordan)">Petra (Jordan)</div>
+          </div>
+        </div>
+        <div class="field"><label>Package model</label>
+          <div class="chip-group" id="cg-model">
+            <div class="chip" data-v="Fixed packages only">Fixed only</div>
+            <div class="chip" data-v="Custom packages only">Custom only</div>
+            <div class="chip" data-v="Both fixed & custom">Both</div>
+          </div>
+        </div>
+        <div class="field"><label>Target nationalities / markets</label><input type="text" id="f-markets" placeholder="e.g. Europeans, Americans, Gulf tourists"></div>
+        <div class="field"><label>Team languages spoken</label>
+          <div class="chip-group" id="cg-langs">
+            <div class="chip" data-v="Arabic">Arabic</div>
+            <div class="chip" data-v="English">English</div>
+            <div class="chip" data-v="French">French</div>
+            <div class="chip" data-v="German">German</div>
+            <div class="chip" data-v="Italian">Italian</div>
+            <div class="chip" data-v="Spanish">Spanish</div>
+            <div class="chip" data-v="Russian">Russian</div>
+            <div class="chip" data-v="Chinese">Chinese</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="s2" style="display:none">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">03</span>
+        <div><div class="card-title">Content & trust signals</div><div class="card-desc">Credibility material they have or need</div></div>
+      </div>
+      <div class="card-body">
+        <div class="field"><label>Professional photos</label>
+          <div class="chip-group" id="cg-photos">
+            <div class="chip" data-v="Yes — ready to share">Yes — ready</div>
+            <div class="chip" data-v="Some, needs curation">Some, needs curation</div>
+            <div class="chip" data-v="No — use stock photos">No — use stock</div>
+          </div>
+        </div>
+        <div class="field"><label>Logo / brand kit</label>
+          <div class="chip-group" id="cg-logo">
+            <div class="chip" data-v="Yes — logo + colors">Logo + colors</div>
+            <div class="chip" data-v="Logo only">Logo only</div>
+            <div class="chip" data-v="Needs full branding">Needs branding</div>
+          </div>
+        </div>
+        <div class="field"><label>Client testimonials / reviews</label>
+          <div class="chip-group" id="cg-reviews">
+            <div class="chip" data-v="Written testimonials">Written</div>
+            <div class="chip" data-v="Google / TripAdvisor">Google / TripAdvisor</div>
+            <div class="chip" data-v="Video testimonials">Video</div>
+            <div class="chip" data-v="None yet">None yet</div>
+          </div>
+        </div>
+        <div class="field"><label>Current or upcoming offers</label><textarea id="f-offers" placeholder="e.g. 15% off summer packages June–Aug..."></textarea></div>
+        <div class="field"><label>Partnerships</label><input type="text" id="f-partners" placeholder="e.g. Marriott, Air Arabia, local restaurants"></div>
+        <div class="field"><label>Social media</label><input type="text" id="f-social" placeholder="Instagram, Facebook, TikTok — paste links"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div id="s3" style="display:none">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">04</span>
+        <div><div class="card-title">Digital & technical</div><div class="card-desc">What they have and what they need</div></div>
+      </div>
+      <div class="card-body">
+        <div class="field"><label>Domain name</label>
+          <div class="chip-group" id="cg-domain">
+            <div class="chip" data-v="Yes">Yes</div>
+            <div class="chip" data-v="No — needs one">Needs one</div>
+            <div class="chip" data-v="Not sure">Not sure</div>
+          </div>
+          <input type="text" id="f-domain" placeholder="If yes — e.g. myagency.com" style="margin-top:10px">
+        </div>
+        <div class="field"><label>Website languages needed</label>
+          <div class="chip-group" id="cg-weblangs">
+            <div class="chip" data-v="English only">English only</div>
+            <div class="chip" data-v="English + Arabic">+ Arabic</div>
+            <div class="chip" data-v="English + French">+ French</div>
+            <div class="chip" data-v="English + German">+ German</div>
+            <div class="chip" data-v="3+ languages">3+ languages</div>
+          </div>
+        </div>
+        <div class="field"><label>Payment options</label>
+          <div class="chip-group" id="cg-payment">
+            <div class="chip" data-v="Credit / debit card">Credit card</div>
+            <div class="chip" data-v="PayPal">PayPal</div>
+            <div class="chip" data-v="Bank transfer">Bank transfer</div>
+            <div class="chip" data-v="Cash on arrival">Cash</div>
+            <div class="chip" data-v="Stripe">Stripe</div>
+            <div class="chip" data-v="Wise / Payoneer">Wise / Payoneer</div>
+            <div class="chip" data-v="Fawry">Fawry</div>
+          </div>
+        </div>
+        <div class="field"><label>Who manages the site after launch?</label>
+          <div class="chip-group" id="cg-manage">
+            <div class="chip" data-v="Client — needs simple editor">Client</div>
+            <div class="chip" data-v="Developer (you)">Developer (me)</div>
+            <div class="chip" data-v="Undecided">Undecided</div>
+          </div>
+        </div>
+        <div class="field"><label>WhatsApp / live chat button</label>
+          <div class="chip-group" id="cg-chat">
+            <div class="chip" data-v="Yes — WhatsApp">WhatsApp</div>
+            <div class="chip" data-v="Yes — live chat">Live chat</div>
+            <div class="chip" data-v="Not needed">Not needed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div id="s4" style="display:none">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-num">05</span>
+        <div><div class="card-title">Style, timeline & budget</div><div class="card-desc">Scope and delivery expectations</div></div>
+      </div>
+      <div class="card-body">
+        <div class="field"><label>Website style preference</label>
+          <div class="chip-group" id="cg-style">
+            <div class="chip" data-v="Clean & modern">Clean & modern</div>
+            <div class="chip" data-v="Luxury & elegant">Luxury & elegant</div>
+            <div class="chip" data-v="Adventure & bold">Adventure & bold</div>
+            <div class="chip" data-v="Cultural & traditional">Cultural & traditional</div>
+            <div class="chip" data-v="No preference">No preference</div>
+          </div>
+        </div>
+        <div class="field"><label>Competitor sites they admire</label><textarea id="f-inspo" placeholder="Names or URLs of sites they like..."></textarea></div>
+        <div class="field"><label>Desired launch timeline</label>
+          <div class="chip-group" id="cg-timeline">
+            <div class="chip" data-v="ASAP — under 2 weeks">ASAP</div>
+            <div class="chip" data-v="1 month">1 month</div>
+            <div class="chip" data-v="2–3 months">2–3 months</div>
+            <div class="chip" data-v="Flexible">Flexible</div>
+          </div>
+        </div>
+        <div class="field"><label>Budget range (USD)</label>
+          <div class="chip-group" id="cg-budget">
+            <div class="chip" data-v="Under $500">Under $500</div>
+            <div class="chip" data-v="$500 – $1,500">$500–$1,500</div>
+            <div class="chip" data-v="$1,500 – $5,000">$1,500–$5,000</div>
+            <div class="chip" data-v="$5,000+">$5,000+</div>
+            <div class="chip" data-v="Not discussed yet">Not yet</div>
+          </div>
+        </div>
+        <div class="field"><label>Additional notes</label><textarea id="f-notes" placeholder="Anything else worth capturing..."></textarea></div>
+      </div>
+    </div>
+    <button class="btn-gen" onclick="genSummary()">Generate client PRD →</button>
+  </div>
+
+  <!-- SUMMARY -->
+  <div id="s-done" style="display:none">
+    <div class="sum-wrap">
+      <div class="sum-head">
+        <div>
+          <div class="sum-head-title">Client PRD summary</div>
+          <div class="sum-head-meta" id="sum-meta"></div>
+        </div>
+        <div class="sum-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Complete
+        </div>
+      </div>
+      <div id="sum-body"></div>
+    </div>
+    <div class="copy-row">
+      <button class="copy-btn" onclick="doCopy()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy as plain text
+      </button>
+      <div class="done-pill" id="done-pill">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Copied to clipboard
+      </div>
+    </div>
+    <div style="margin-top:14px"><button class="btn btn-ghost" onclick="goEdit()">Edit answers</button></div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav" id="main-nav">
+    <button class="btn btn-ghost" id="btn-back" onclick="prev()" style="visibility:hidden">Back</button>
+    <span class="step-ctr" id="step-ctr">01 / 05</span>
+    <button class="btn btn-gold" id="btn-next" onclick="next()">Continue</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <svg width="18" height="18" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="3" fill="#0F0F0F"/><rect x="10" y="10" width="14" height="14" rx="1" stroke="#B8863A" stroke-width="1" fill="none" opacity=".9"/><rect x="20" y="20" width="14" height="14" rx="1" stroke="#B8863A" stroke-width="1" fill="none" opacity=".5"/><rect x="20" y="20" width="4" height="4" fill="#B8863A" opacity=".35"/></svg>
+      <span class="footer-logo-name">Mahmoud Tamer</span>
+      <div class="footer-dot"></div>
+      <span class="footer-tagline">Digital Marketing & Branding</span>
+    </div>
+    <span class="footer-year" id="footer-year"></span>
+  </div>
+</div>
+
+<script>
+document.getElementById('footer-year').textContent=new Date().getFullYear();
+let cur=0;const total=5;const sel={};
+const singles=['cg-model','cg-photos','cg-logo','cg-domain','cg-manage','cg-timeline','cg-budget','cg-style'];
+document.querySelectorAll('.chip-group').forEach(g=>{
+  const id=g.id;sel[id]=[];
+  g.querySelectorAll('.chip').forEach(c=>{
+    c.addEventListener('click',()=>{
+      const v=c.dataset.v,single=singles.includes(id);
+      if(single){g.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));sel[id]=[v];}
+      else{if(c.classList.contains('on')){c.classList.remove('on');sel[id]=sel[id].filter(x=>x!==v);return;}else sel[id].push(v);}
+      c.classList.toggle('on',sel[id].includes(v));
+    });
+  });
+});
+function gv(id){return(document.getElementById(id)||{}).value||'';}
+function gc(id){return(sel[id]||[]).join(', ')||'—';}
+function pad(n){return n<10?'0'+n:n;}
+function show(n){
+  for(let i=0;i<total;i++){const el=document.getElementById('s'+i);if(el)el.style.display=i===n?'block':'none';}
+  document.getElementById('s-done').style.display='none';
+  document.getElementById('main-nav').style.display='flex';
+  for(let i=0;i<total;i++){const d=document.getElementById('d'+i);d.className='step-dot'+(i<n?' done':i===n?' active':'');}
+  document.getElementById('prog-label').textContent=pad(n+1)+' — '+pad(total);
+  document.getElementById('step-ctr').textContent=pad(n+1)+' / '+pad(total);
+  document.getElementById('btn-back').style.visibility=n>0?'visible':'hidden';
+  document.getElementById('btn-next').textContent=n===total-1?'Review':'Continue';
+  cur=n;
+}
+function next(){cur<total-1?show(cur+1):genSummary();}
+function prev(){if(cur>0)show(cur-1);}
+function goEdit(){show(total-1);}
+
+const sections=[
+  {label:'Business identity',rows:[['Agency name','f-name',null],['Years in business','f-years',null],['Owner / contact','f-owner',null],['Phone','f-phone',null],['Email','f-email',null],['Location','f-location',null],['Certifications','f-certs',null],['About','f-about',null]]},
+  {label:'Services & operations',rows:[['Services',null,'cg-services'],['Destinations',null,'cg-areas'],['Package model',null,'cg-model'],['Target markets','f-markets',null],['Team languages',null,'cg-langs']]},
+  {label:'Content & trust signals',rows:[['Photos',null,'cg-photos'],['Logo / branding',null,'cg-logo'],['Testimonials',null,'cg-reviews'],['Current offers','f-offers',null],['Partnerships','f-partners',null],['Social media','f-social',null]]},
+  {label:'Digital & technical',rows:[['Domain',null,'cg-domain'],['Domain name','f-domain',null],['Website languages',null,'cg-weblangs'],['Payment options',null,'cg-payment'],['Site management',null,'cg-manage'],['Chat / WhatsApp',null,'cg-chat']]},
+  {label:'Style, timeline & budget',rows:[['Style preference',null,'cg-style'],['Inspiration','f-inspo',null],['Launch timeline',null,'cg-timeline'],['Budget range',null,'cg-budget'],['Notes','f-notes',null]]}
+];
+
+function genSummary(){
+  let html='';
+  sections.forEach(sec=>{
+    html+=`<div class="sum-section"><div class="sum-section-label">${sec.label}</div>`;
+    sec.rows.forEach(([k,fid,cid])=>{
+      const val=fid?gv(fid):gc(cid);
+      html+=`<div class="sum-row"><span class="sum-k">${k}</span><span class="sum-v">${val||'—'}</span></div>`;
+    });
+    html+='</div>';
+  });
+  document.getElementById('sum-body').innerHTML=html;
+  const d=new Date();
+  document.getElementById('sum-meta').textContent='Mahmoud Tamer · '+d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  for(let i=0;i<total;i++){const el=document.getElementById('s'+i);if(el)el.style.display='none';}
+  document.getElementById('s-done').style.display='block';
+  document.getElementById('main-nav').style.display='none';
+  for(let i=0;i<total;i++)document.getElementById('d'+i).className='step-dot done';
+  document.getElementById('prog-label').textContent='Complete';
+}
+
+function doCopy(){
+  let t='CLIENT PRD — WEBSITE DISCOVERY BRIEF\nMahmoud Tamer | Digital Marketing & Branding\n'+new Date().toLocaleDateString('en-GB')+'\n\n';
+  sections.forEach(sec=>{
+    t+=sec.label.toUpperCase()+'\n'+'─'.repeat(32)+'\n';
+    sec.rows.forEach(([k,fid,cid])=>{t+=k+': '+(fid?gv(fid):gc(cid)||'—')+'\n';});
+    t+='\n';
+  });
+  navigator.clipboard.writeText(t).then(()=>{
+    const p=document.getElementById('done-pill');
+    p.style.display='inline-flex';
+    setTimeout(()=>p.style.display='none',2500);
+  });
+}
+show(0);
+</script>
